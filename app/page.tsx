@@ -10,6 +10,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { Section, SectionTitle } from "@/components/Section";
 import { company } from "@/lib/company";
 import { works } from "@/lib/works";
@@ -20,19 +21,12 @@ export default function HomePage() {
   return (
     <>
       <section className="relative isolate min-h-[88vh] w-full overflow-hidden">
-        <Image
-          src="/images/hero.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-900/85 via-brand-800/70 to-steel-900/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.12),_transparent_60%)]" />
+        <HeroCarousel />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-brand-900/85 via-brand-800/65 to-steel-900/70" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.12),_transparent_60%)]" />
 
-        <div className="relative z-10 flex min-h-[88vh] items-center">
-          <div className="container-x w-full pt-20 pb-12">
+        <div className="relative z-20 flex min-h-[88vh] items-center">
+          <div className="container-x w-full pt-20 pb-16">
             <p className="font-display text-xs font-bold uppercase tracking-[0.4em] text-brand-200 animate-fadeUp">
               KIKUCHI KOGYO — Thermal Insulation
             </p>
@@ -41,13 +35,20 @@ export default function HomePage() {
                 みんなの
               </span>
               <span className="block animate-fadeUp [animation-delay:240ms] opacity-0 [animation-fill-mode:forwards]">
-                <span className="text-brand-200">ライフライン</span>を支える。
+                <span className="bg-gradient-to-r from-brand-200 to-white bg-clip-text text-transparent">
+                  ライフライン
+                </span>
+                を支える。
               </span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-brand-100 sm:text-lg animate-fadeUp [animation-delay:360ms] opacity-0 [animation-fill-mode:forwards]">
-              工場・プラント・空調ダクト・配管・ボイラー・タンクなど。
+            <p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-brand-100 sm:text-lg animate-fadeUp [animation-delay:360ms] opacity-0 [animation-fill-mode:forwards]">
+              工場・プラント・空調ダクト・
+              <br className="sm:hidden" />
+              配管・ボイラー・タンクなど。
               <br className="hidden sm:block" />
-              熱を逃さず、設備を守る。{company.name}は、千葉県市原市から
+              熱を逃さず、設備を守る。
+              <br className="sm:hidden" />
+              {company.name}は、千葉県市原市から
               <strong className="text-white">確かな保温板金</strong>
               をお届けします。
             </p>
@@ -75,53 +76,77 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Section className="bg-white">
-        <SectionTitle
-          eyebrow="About Us"
-          title="若さと勢いで、確かな技術を。"
-          description={`${company.name}は、令和元年創業の熱絶縁工事(保温板金)会社です。プラントから工場、空調まで、熱を扱うあらゆる設備の保温・断熱を支える縁の下の力持ちとして、千葉・神奈川・茨城を中心に活動しています。`}
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {company.strengths.map((s) => (
-            <div
-              key={s.title}
-              className="group relative overflow-hidden rounded-sm border border-steel-200 bg-white p-7 transition-all hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg"
-            >
-              <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-brand-50 transition-transform group-hover:scale-150" />
-              <Sparkles className="relative h-8 w-8 text-brand-600" />
-              <h3 className="relative mt-5 text-lg font-bold text-steel-900">
-                {s.title}
-              </h3>
-              <p className="relative mt-3 text-sm leading-relaxed text-steel-600">
-                {s.description}
-              </p>
-            </div>
-          ))}
+      <Section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0 -z-0 bg-grid-soft opacity-50" />
+        <div className="relative">
+          <SectionTitle
+            eyebrow="About Us"
+            title={
+              <>
+                若さと勢いで、
+                <br className="sm:hidden" />
+                確かな技術を。
+              </>
+            }
+            description={`${company.name}は、令和元年創業の熱絶縁工事(保温板金)会社です。プラントから工場、空調まで、熱を扱うあらゆる設備の保温・断熱を支える縁の下の力持ちとして、千葉・神奈川・茨城を中心に活動しています。`}
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {company.strengths.map((s, i) => (
+              <div key={s.title} className="card-modern group p-7">
+                <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-50/60 blur-xl transition-all duration-500 group-hover:scale-150" />
+                <span className="icon-glow">
+                  <Sparkles className="relative z-10 h-6 w-6" />
+                </span>
+                <span className="absolute right-6 top-6 font-display text-xs font-bold tracking-[0.3em] text-brand-300">
+                  0{i + 1}
+                </span>
+                <h3 className="relative mt-5 text-lg font-bold text-steel-900">
+                  {s.title}
+                </h3>
+                <p className="relative mt-3 text-sm leading-relaxed text-steel-600">
+                  {s.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
-      <Section className="bg-steel-50">
-        <SectionTitle
-          eyebrow="Services"
-          title="幅広い設備に対応する、保温板金。"
-          description="熱絶縁工事(保温板金)は、配管やダクトを保温材で覆い、その上に板金を施工することで熱の損失を防ぎ、結露・凍結を防止する重要な工事です。"
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {company.facilities.map((f) => (
-            <div
-              key={f}
-              className="flex items-start gap-3 rounded-sm border border-steel-200 bg-white p-5"
-            >
-              <span className="mt-1 inline-flex h-2 w-2 shrink-0 rounded-full bg-brand-600" />
-              <span className="text-sm font-medium text-steel-800">{f}</span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <Link href="/services" className="btn-outline">
-            事業内容を詳しく見る
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+      <Section className="relative overflow-hidden bg-steel-50">
+        <div className="pointer-events-none absolute -left-20 top-1/3 h-72 w-72 rounded-full bg-brand-100/40 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 bottom-10 h-72 w-72 rounded-full bg-brand-200/30 blur-3xl" />
+        <div className="relative">
+          <SectionTitle
+            eyebrow="Services"
+            title={
+              <>
+                幅広い設備に対応する、
+                <br className="sm:hidden" />
+                保温板金。
+              </>
+            }
+            description="熱絶縁工事(保温板金)は、配管やダクトを保温材で覆い、その上に板金を施工することで熱の損失を防ぎ、結露・凍結を防止する重要な工事です。"
+          />
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {company.facilities.map((f) => (
+              <div
+                key={f}
+                className="group flex items-center gap-3 rounded-2xl border border-steel-200/70 bg-white/90 px-5 py-4 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-[0_12px_28px_-12px_rgba(15,76,129,0.18)]"
+              >
+                <span className="relative inline-flex h-2.5 w-2.5 shrink-0 items-center justify-center">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-50 transition-transform duration-300 group-hover:scale-150" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600" />
+                </span>
+                <span className="text-sm font-medium text-steel-800">{f}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link href="/services" className="btn-outline">
+              事業内容を詳しく見る
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </Section>
 
@@ -136,21 +161,22 @@ export default function HomePage() {
             <Link
               key={w.id}
               href="/works"
-              className="group relative block aspect-[4/5] overflow-hidden rounded-sm bg-steel-100"
+              className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-steel-100"
             >
               <Image
                 src={w.src}
                 alt={w.alt}
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-steel-900/85 via-steel-900/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-                <p className="text-xs uppercase tracking-widest text-brand-200">
+              <div className="absolute inset-0 bg-gradient-to-t from-steel-900/90 via-steel-900/15 to-transparent" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 transition-all duration-300 group-hover:ring-white/30" />
+              <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                <span className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-500/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-100 backdrop-blur">
                   Case
-                </p>
-                <p className="mt-1 text-sm font-semibold">{w.title}</p>
+                </span>
+                <p className="mt-3 text-sm font-semibold">{w.title}</p>
               </div>
             </Link>
           ))}
@@ -163,8 +189,8 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <section className="relative overflow-hidden bg-brand-700 py-20 text-white sm:py-24">
-        <div className="absolute inset-0 opacity-30">
+      <section className="relative overflow-hidden py-20 text-white sm:py-24">
+        <div className="absolute inset-0 -z-10">
           <Image
             src="/images/works/duct-02.jpg"
             alt=""
@@ -172,19 +198,21 @@ export default function HomePage() {
             sizes="100vw"
             className="object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-800/85 to-brand-700/70" />
+          <div className="absolute inset-0 bg-grid-soft opacity-20" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-800/85 to-brand-700/70" />
         <div className="container-x relative grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-brand-200">
-              Recruit
-            </p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+            <p className="eyebrow text-brand-200">Recruit</p>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
               一緒に、未来のライフラインを支えませんか？
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-brand-100">
-              {company.name}では保温板金職人を募集中です。未経験の方も歓迎。
-              若いチームで、確かな技術を一から身につけられる環境です。
+            <p className="mt-5 text-pretty text-base leading-relaxed text-brand-100">
+              {company.name}では保温板金職人を募集中です。
+              <br className="sm:hidden" />
+              未経験の方も歓迎。若いチームで、
+              <br className="sm:hidden" />
+              確かな技術を一から身につけられる環境です。
             </p>
             <ul className="mt-7 space-y-2 text-sm">
               {company.recruit.requirements.map((r) => (
@@ -196,7 +224,7 @@ export default function HomePage() {
             </ul>
           </div>
           <div className="grid grid-cols-3 gap-3">
-            <div className="col-span-3 flex flex-col gap-1 rounded-sm bg-white/10 p-5 backdrop-blur">
+            <div className="glass-card col-span-3 flex flex-col gap-1 p-5">
               <span className="text-xs uppercase tracking-widest text-brand-200">
                 Job
               </span>
@@ -204,7 +232,7 @@ export default function HomePage() {
                 {company.recruit.job} 職人
               </span>
             </div>
-            <div className="flex flex-col gap-1 rounded-sm bg-white/10 p-5 backdrop-blur">
+            <div className="glass-card flex flex-col gap-1 p-5">
               <Briefcase className="h-4 w-4 text-brand-200" />
               <span className="mt-2 text-[10px] uppercase tracking-widest text-brand-200">
                 Salary
@@ -213,14 +241,14 @@ export default function HomePage() {
                 {company.recruit.salary}
               </span>
             </div>
-            <div className="flex flex-col gap-1 rounded-sm bg-white/10 p-5 backdrop-blur">
+            <div className="glass-card flex flex-col gap-1 p-5">
               <Building2 className="h-4 w-4 text-brand-200" />
               <span className="mt-2 text-[10px] uppercase tracking-widest text-brand-200">
                 Place
               </span>
               <span className="text-sm font-bold">市原市</span>
             </div>
-            <div className="flex flex-col gap-1 rounded-sm bg-white/10 p-5 backdrop-blur">
+            <div className="glass-card flex flex-col gap-1 p-5">
               <Users className="h-4 w-4 text-brand-200" />
               <span className="mt-2 text-[10px] uppercase tracking-widest text-brand-200">
                 Welcome
@@ -238,19 +266,21 @@ export default function HomePage() {
       </section>
 
       <Section className="bg-white">
-        <div className="rounded-sm border border-steel-200 bg-gradient-to-br from-white to-steel-50 p-8 lg:p-14">
+        <div className="card-modern p-8 lg:p-14">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-brand-600">
-                Contact
-              </p>
-              <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
+              <p className="eyebrow text-brand-600">Contact</p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
                 お見積り・ご相談は
-                <br className="hidden sm:block" />
-                お気軽にお問い合わせください。
+                <br />
+                お気軽にお問い合わせ
+                <br className="sm:hidden" />
+                ください。
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-steel-600">
-                工事のご依頼・採用に関するお問い合わせ、その他ご質問など、
+              <p className="mt-5 text-pretty text-base leading-relaxed text-steel-600">
+                工事のご依頼・採用に関するお問い合わせ、
+                <br className="sm:hidden" />
+                その他ご質問など、
                 <br className="hidden sm:block" />
                 お電話・メール・フォームから受け付けております。
               </p>
@@ -258,11 +288,11 @@ export default function HomePage() {
             <div className="space-y-4">
               <a
                 href={`tel:${company.contact.telDigits}`}
-                className="flex items-center justify-between rounded-sm border border-brand-200 bg-white p-6 transition-all hover:border-brand-600 hover:shadow"
+                className="group flex items-center justify-between rounded-2xl border border-brand-100 bg-gradient-to-br from-white to-brand-50/50 p-6 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-[0_12px_28px_-12px_rgba(15,76,129,0.25)]"
               >
                 <div className="flex items-center gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
-                    <Phone className="h-5 w-5 text-brand-600" />
+                  <span className="icon-ring">
+                    <Phone className="h-5 w-5" />
                   </span>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-widest text-steel-500">
@@ -273,11 +303,17 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="h-5 w-5 text-brand-600" />
+                <ArrowRight className="h-5 w-5 text-brand-600 transition-transform group-hover:translate-x-1" />
               </a>
               <Link
                 href="/contact"
-                className="flex items-center justify-between rounded-sm bg-brand-700 p-6 text-white transition-all hover:bg-brand-800"
+                className="group flex items-center justify-between rounded-2xl p-6 text-white transition-all hover:-translate-y-0.5"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #1B5DA0 0%, #0F4C81 60%, #0C3D67 100%)",
+                  boxShadow:
+                    "0 16px 40px -12px rgba(15,76,129,0.45), inset 0 1px 0 rgba(255,255,255,0.18)",
+                }}
               >
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-brand-200">
@@ -287,7 +323,7 @@ export default function HomePage() {
                     お問い合わせフォーム
                   </p>
                 </div>
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>

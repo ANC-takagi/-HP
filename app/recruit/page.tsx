@@ -76,12 +76,20 @@ export default function RecruitPage() {
       <PageHero
         eyebrow="Recruit"
         title="一緒に、ライフラインを支える仲間へ。"
-        description="若いチームで、確かな技術を一から身につけられる。経験の有無は問いません。やる気と素直さがあれば、しっかりと育てます。"
+        description={
+          <>
+            若いチームで、確かな技術を一から身につけられる。
+            <br className="sm:hidden" />
+            経験の有無は問いません。
+            <br className="hidden sm:block" />
+            やる気と素直さがあれば、しっかりと育てます。
+          </>
+        }
       />
 
       <Section className="bg-white">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative aspect-[5/4] overflow-hidden rounded-sm bg-steel-100">
+          <div className="relative aspect-[5/4] overflow-hidden rounded-3xl bg-steel-100 shadow-[0_30px_80px_-30px_rgba(15,76,129,0.4)]">
             <Image
               src="/images/works/duct-01.jpg"
               alt="現場で働く保温板金職人"
@@ -89,20 +97,20 @@ export default function RecruitPage() {
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />
+            <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
           </div>
           <div>
-            <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-brand-600">
-              Why us?
-            </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
-              手に職をつけて、
-              <br />
-              長く活躍できる現場へ。
-            </h2>
-            <span className="mt-5 block h-1 w-12 rounded-full bg-brand-600" />
-            <p className="mt-7 text-base leading-relaxed text-steel-700">
-              保温板金は、工場・プラントの稼働を支える専門職です。
-              一度身につけた技術は、長く活かせます。当社では、
+            <p className="eyebrow text-brand-600">Why us?</p>
+            <div className="w-fit">
+              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+                手に職をつけて、
+                <br />
+                長く活躍できる現場へ。
+              </h2>
+              <span className="mt-5 block h-1 w-full rounded-full bg-gradient-to-r from-brand-500 to-brand-700" />
+            </div>
+            <p className="mt-7 text-pretty text-base leading-relaxed text-steel-700">
+              保温板金は、工場・プラントの稼働を支える専門職です。一度身につけた技術は、長く活かせます。当社では、
               <strong className="text-steel-900">未経験から</strong>
               スタートし、現場で着実に技術を磨ける環境を整えています。
             </p>
@@ -113,10 +121,7 @@ export default function RecruitPage() {
                 "正社員のほか、下請け・個人事業主としての協力も歓迎",
                 "がんばりは家族手当・交通費等の制度でしっかり還元",
               ].map((t) => (
-                <li
-                  key={t}
-                  className="flex items-start gap-3 text-steel-800"
-                >
+                <li key={t} className="flex items-start gap-3 text-steel-800">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
                   <span>{t}</span>
                 </li>
@@ -126,76 +131,74 @@ export default function RecruitPage() {
         </div>
       </Section>
 
-      <Section className="bg-steel-50">
-        <SectionTitle eyebrow="Requirements" title="募集要項" />
-        <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-sm border border-steel-200 bg-white">
-          <table className="w-full text-left text-sm">
-            <tbody>
-              {rows.map((row, idx) => {
-                const Icon = row.icon;
-                return (
-                  <tr
-                    key={row.label}
-                    className={
-                      idx !== rows.length - 1
-                        ? "border-b border-steel-100"
-                        : ""
-                    }
-                  >
-                    <th className="w-32 bg-steel-50 px-5 py-4 align-top sm:w-48">
-                      <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
-                        <Icon className="h-4 w-4 text-brand-600" />
-                        {row.label}
-                      </span>
-                    </th>
-                    <td className="px-5 py-4 text-steel-800">{row.value}</td>
-                  </tr>
-                );
-              })}
-              <tr className="border-t border-steel-100">
-                <th className="w-32 bg-steel-50 px-5 py-4 align-top sm:w-48">
-                  <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
-                    <HeartHandshake className="h-4 w-4 text-brand-600" />
-                    福利厚生
-                  </span>
-                </th>
-                <td className="px-5 py-4 text-steel-800">
-                  <ul className="space-y-2">
+      <Section className="relative overflow-hidden bg-steel-50">
+        <div className="pointer-events-none absolute -left-32 top-1/4 h-72 w-72 rounded-full bg-brand-100/50 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 bottom-0 h-72 w-72 rounded-full bg-brand-200/30 blur-3xl" />
+        <div className="relative">
+          <SectionTitle eyebrow="Requirements" title="募集要項" />
+          <div className="mx-auto mt-12 max-w-4xl">
+            <div className="card-modern overflow-hidden p-0">
+              <ul className="divide-y divide-steel-100/80">
+                {rows.map((row) => {
+                  const Icon = row.icon;
+                  return (
+                    <li
+                      key={row.label}
+                      className="grid grid-cols-[7rem_1fr] items-center gap-4 px-5 py-5 transition-colors hover:bg-brand-50/40 sm:grid-cols-[12rem_1fr] sm:px-7"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-white text-brand-600 shadow-[inset_0_0_0_1px_rgba(15,76,129,0.08),0_4px_10px_-6px_rgba(15,76,129,0.2)]">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <span className="text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
+                          {row.label}
+                        </span>
+                      </div>
+                      <div className="text-sm text-steel-800 sm:text-base">
+                        {row.value}
+                      </div>
+                    </li>
+                  );
+                })}
+                <li className="grid grid-cols-[7rem_1fr] items-start gap-4 px-5 py-5 transition-colors hover:bg-brand-50/40 sm:grid-cols-[12rem_1fr] sm:px-7">
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-white text-brand-600 shadow-[inset_0_0_0_1px_rgba(15,76,129,0.08),0_4px_10px_-6px_rgba(15,76,129,0.2)]">
+                      <HeartHandshake className="h-4 w-4" />
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
+                      福利厚生
+                    </span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-steel-800 sm:text-base">
                     {company.recruit.benefits.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-start gap-2"
-                      >
+                      <li key={b} className="flex items-start gap-2">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
-                </td>
-              </tr>
-              <tr className="border-t border-steel-100">
-                <th className="w-32 bg-steel-50 px-5 py-4 align-top sm:w-48">
-                  <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
-                    <ShieldCheck className="h-4 w-4 text-brand-600" />
-                    応募資格
-                  </span>
-                </th>
-                <td className="px-5 py-4 text-steel-800">
-                  <ul className="space-y-2">
+                </li>
+                <li className="grid grid-cols-[7rem_1fr] items-start gap-4 px-5 py-5 transition-colors hover:bg-brand-50/40 sm:grid-cols-[12rem_1fr] sm:px-7">
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-white text-brand-600 shadow-[inset_0_0_0_1px_rgba(15,76,129,0.08),0_4px_10px_-6px_rgba(15,76,129,0.2)]">
+                      <ShieldCheck className="h-4 w-4" />
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
+                      応募資格
+                    </span>
+                  </div>
+                  <ul className="space-y-2 text-sm text-steel-800 sm:text-base">
                     {company.recruit.requirements.map((r) => (
-                      <li
-                        key={r}
-                        className="flex items-start gap-2"
-                      >
+                      <li key={r} className="flex items-start gap-2">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                         <span>{r}</span>
                       </li>
                     ))}
                   </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -225,12 +228,11 @@ export default function RecruitPage() {
           ].map((m) => {
             const Icon = m.icon;
             return (
-              <div
-                key={m.title}
-                className="rounded-sm border border-steel-200 bg-white p-7 text-center"
-              >
-                <Icon className="mx-auto h-8 w-8 text-brand-600" />
-                <h3 className="mt-4 text-base font-bold">{m.title}</h3>
+              <div key={m.title} className="card-modern p-7 text-center">
+                <span className="icon-glow mx-auto">
+                  <Icon className="relative z-10 h-6 w-6" />
+                </span>
+                <h3 className="mt-5 text-base font-bold">{m.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-steel-600">
                   {m.description}
                 </p>
@@ -240,7 +242,7 @@ export default function RecruitPage() {
         </div>
       </Section>
 
-      <section className="relative overflow-hidden bg-brand-700 py-20 text-white">
+      <section className="relative overflow-hidden py-20 text-white">
         <Image
           src="/images/works/pipe-02.jpg"
           alt=""
@@ -249,11 +251,10 @@ export default function RecruitPage() {
           className="object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-800/85 to-brand-700/70" />
+        <div className="absolute inset-0 bg-grid-soft opacity-20" />
         <div className="container-x relative text-center">
-          <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-brand-200">
-            Apply
-          </p>
-          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
+          <p className="eyebrow text-brand-200">Apply</p>
+          <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
             応募・お問い合わせ
           </h2>
           <p className="mt-3 text-sm text-brand-100 sm:text-base">

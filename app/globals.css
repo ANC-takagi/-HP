@@ -44,28 +44,174 @@
     @apply mt-2 text-base font-semibold text-steel-600 sm:text-lg;
   }
 
+  /* ==== Modern futuristic buttons ==== */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm border px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
   .btn-primary {
-    @apply btn border-brand-600 bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500;
+    @apply btn text-white;
+    background: linear-gradient(135deg, #1b5da0 0%, #0f4c81 60%, #0c3d67 100%);
+    box-shadow:
+      0 10px 30px -8px rgba(15, 76, 129, 0.45),
+      0 6px 12px -4px rgba(15, 76, 129, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 16px 40px -8px rgba(15, 76, 129, 0.55),
+      0 8px 16px -4px rgba(15, 76, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+  .btn-primary::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 70%
+    );
+  }
+  .btn-primary:hover::before {
+    @apply opacity-100;
   }
 
   .btn-outline {
-    @apply btn border-brand-600 bg-transparent text-brand-600 hover:bg-brand-600 hover:text-white focus:ring-brand-500;
+    @apply btn border border-brand-600 bg-white/40 text-brand-700 backdrop-blur-sm;
+    box-shadow:
+      0 4px 14px -4px rgba(15, 76, 129, 0.18),
+      inset 0 0 0 1px rgba(15, 76, 129, 0);
+  }
+  .btn-outline:hover {
+    @apply text-white;
+    background: linear-gradient(135deg, #1b5da0, #0f4c81);
+    box-shadow:
+      0 12px 28px -8px rgba(15, 76, 129, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
   }
 
   .btn-light {
-    @apply btn border-white/40 bg-white/10 text-white backdrop-blur hover:bg-white hover:text-brand-700 focus:ring-white;
+    @apply btn border border-white/30 bg-white/10 text-white backdrop-blur-md;
+    box-shadow:
+      0 4px 14px -4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .btn-light:hover {
+    @apply bg-white text-brand-700;
+    transform: translateY(-1px);
+    box-shadow:
+      0 12px 28px -8px rgba(255, 255, 255, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* ==== Modern futuristic cards ==== */
+  .card-modern {
+    @apply relative overflow-hidden rounded-2xl border border-steel-200/70 bg-white/85 backdrop-blur-sm transition-all duration-300;
+    box-shadow:
+      0 1px 2px rgba(15, 76, 129, 0.04),
+      0 4px 12px -6px rgba(15, 76, 129, 0.06);
+  }
+  .card-modern::before {
+    content: "";
+    @apply pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-500;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(15, 76, 129, 0.4),
+      transparent
+    );
+  }
+  .card-modern::after {
+    content: "";
+    @apply pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, rgba(27, 93, 160, 0.08), transparent 60%);
+  }
+  .card-modern:hover {
+    @apply -translate-y-1 border-brand-200/90;
+    box-shadow:
+      0 24px 50px -16px rgba(15, 76, 129, 0.18),
+      0 8px 16px -6px rgba(15, 76, 129, 0.1);
+  }
+  .card-modern:hover::before,
+  .card-modern:hover::after {
+    @apply opacity-100;
+  }
+
+  /* Slightly fancier dark variant on tinted backgrounds */
+  .card-modern-soft {
+    @apply card-modern;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(244, 246, 248, 0.85));
+  }
+
+  /* ==== Glowing icon container ==== */
+  .icon-glow {
+    @apply relative inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white;
+    background: linear-gradient(135deg, #3b7dbe 0%, #1b5da0 50%, #0f4c81 100%);
+    box-shadow:
+      0 10px 24px -8px rgba(15, 76, 129, 0.5),
+      0 4px 8px -2px rgba(15, 76, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .icon-glow::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-2xl;
+    background: radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.25),
+      transparent 60%
+    );
+  }
+
+  .icon-glow-sm {
+    @apply icon-glow h-10 w-10;
+  }
+
+  .icon-ring {
+    @apply relative inline-flex h-12 w-12 items-center justify-center rounded-2xl text-brand-600;
+    background: linear-gradient(180deg, rgba(235, 244, 252, 1), rgba(255, 255, 255, 1));
+    box-shadow:
+      0 0 0 1px rgba(15, 76, 129, 0.1),
+      0 8px 20px -8px rgba(15, 76, 129, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  /* ==== Frosted glass info cards ==== */
+  .glass-card {
+    @apply relative overflow-hidden rounded-2xl border border-white/40 backdrop-blur-md;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.05)
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 8px 24px -10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ==== Decorative accents ==== */
+  .accent-bar {
+    @apply mx-auto h-1 w-12 rounded-full;
+    background: linear-gradient(90deg, #1b5da0, #0f4c81);
+  }
+
+  .corner-accent {
+    @apply pointer-events-none absolute h-6 w-6;
+  }
+
+  /* ==== Page hero badge label ==== */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.3em];
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-6 bg-current;
   }
 
   .link-arrow {
     @apply inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700;
-  }
-
-  .accent-bar {
-    @apply mx-auto h-1 w-12 rounded-full bg-brand-600;
   }
 }
 
@@ -76,5 +222,46 @@
 
   .clip-slant {
     clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+
+  /* Subtle dot grid background */
+  .bg-grid-soft {
+    background-image: radial-gradient(
+      circle,
+      rgba(15, 76, 129, 0.08) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  /* Animated noise / glimmer */
+  .bg-glimmer {
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: glimmer 6s ease-in-out infinite;
+  }
+
+  @keyframes glimmer {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Smooth crossfade for hero carousel */
+  .fade-active {
+    opacity: 1;
+    transition: opacity 1500ms ease-out;
+  }
+  .fade-inactive {
+    opacity: 0;
+    transition: opacity 1500ms ease-out;
   }
 }

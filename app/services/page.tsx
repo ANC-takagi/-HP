@@ -77,76 +77,92 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="熱絶縁工事(保温板金)"
-        description="保温板金は、エネルギーロスを抑え、設備を守り、安全な現場をつくる、縁の下のスペシャリスト工事です。"
+        description={
+          <>
+            保温板金は、エネルギーロスを抑え、
+            <br className="sm:hidden" />
+            設備を守り、安全な現場をつくる、
+            <br className="hidden sm:block" />
+            縁の下のスペシャリスト工事です。
+          </>
+        }
       />
 
-      <Section className="bg-white">
-        <SectionTitle
-          eyebrow="What We Do"
-          title="保温板金とは。"
-          description="保温材で配管やダクトを覆い、その上にステンレス・ガルバ等の板金を施工することで、熱の損失と結露を防ぎ、設備の長寿命化と省エネルギーを実現する工事です。"
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {purposes.map((p, i) => {
-            const Icon = purposeIcons[i] ?? Sparkles;
-            return (
-              <div
-                key={p.title}
-                className="rounded-sm border border-steel-200 bg-white p-7 transition-all hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg"
-              >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-brand-50 text-brand-600">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-steel-600">
-                  {p.description}
-                </p>
-              </div>
-            );
-          })}
+      <Section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0 -z-0 bg-grid-soft opacity-40" />
+        <div className="relative">
+          <SectionTitle
+            eyebrow="What We Do"
+            title="保温板金とは。"
+            description="保温材で配管やダクトを覆い、その上にステンレス・ガルバ等の板金を施工することで、熱の損失と結露を防ぎ、設備の長寿命化と省エネルギーを実現する工事です。"
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {purposes.map((p, i) => {
+              const Icon = purposeIcons[i] ?? Sparkles;
+              return (
+                <div key={p.title} className="card-modern p-7">
+                  <span className="icon-glow">
+                    <Icon className="relative z-10 h-6 w-6" />
+                  </span>
+                  <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-steel-600">
+                    {p.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Section>
 
-      <Section className="bg-steel-50">
-        <SectionTitle
-          eyebrow="Coverage"
-          title="対応設備・対応エリア"
-          description="プラントから工場、空調設備まで。設備の種類・規模を問わず、現場ごとに最適な保温板金をお届けします。"
-        />
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <div className="rounded-sm border border-steel-200 bg-white p-8">
-            <div className="flex items-center gap-3">
-              <Wrench className="h-5 w-5 text-brand-600" />
-              <h3 className="text-lg font-bold">対応設備</h3>
+      <Section className="relative overflow-hidden bg-steel-50">
+        <div className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-brand-100/50 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 bottom-10 h-80 w-80 rounded-full bg-brand-200/30 blur-3xl" />
+        <div className="relative">
+          <SectionTitle
+            eyebrow="Coverage"
+            title="対応設備・対応エリア"
+            description="プラントから工場、空調設備まで。設備の種類・規模を問わず、現場ごとに最適な保温板金をお届けします。"
+          />
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <div className="card-modern p-8">
+              <div className="flex items-center gap-3">
+                <span className="icon-ring h-10 w-10">
+                  <Wrench className="h-5 w-5" />
+                </span>
+                <h3 className="text-lg font-bold">対応設備</h3>
+              </div>
+              <ul className="mt-6 space-y-3 text-sm">
+                {company.facilities.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-steel-800">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="mt-5 space-y-3 text-sm">
-              {company.facilities.map((f) => (
-                <li key={f} className="flex items-start gap-3 text-steel-800">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-sm border border-steel-200 bg-white p-8">
-            <div className="flex items-center gap-3">
-              <MapPin className="h-5 w-5 text-brand-600" />
-              <h3 className="text-lg font-bold">対応エリア</h3>
+            <div className="card-modern p-8">
+              <div className="flex items-center gap-3">
+                <span className="icon-ring h-10 w-10">
+                  <MapPin className="h-5 w-5" />
+                </span>
+                <h3 className="text-lg font-bold">対応エリア</h3>
+              </div>
+              <ul className="mt-6 space-y-3 text-sm">
+                {company.serviceAreas.map((area) => (
+                  <li
+                    key={area}
+                    className="flex items-start gap-3 text-steel-800"
+                  >
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-xs leading-relaxed text-steel-600">
+                ※上記以外の地域も応相談。お気軽にお問い合わせください。
+              </p>
             </div>
-            <ul className="mt-5 space-y-3 text-sm">
-              {company.serviceAreas.map((area) => (
-                <li
-                  key={area}
-                  className="flex items-start gap-3 text-steel-800"
-                >
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                  <span>{area}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-xs leading-relaxed text-steel-600">
-              ※上記以外の地域も応相談。お気軽にお問い合わせください。
-            </p>
           </div>
         </div>
       </Section>
@@ -159,14 +175,13 @@ export default function ServicesPage() {
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {company.strengths.map((s, i) => (
-            <div
-              key={s.title}
-              className="relative overflow-hidden rounded-sm border border-steel-200 bg-white p-8"
-            >
+            <div key={s.title} className="card-modern p-8">
               <span className="absolute right-6 top-6 font-display text-5xl font-bold text-brand-100">
                 0{i + 1}
               </span>
-              <Sparkles className="h-8 w-8 text-brand-600" />
+              <span className="icon-glow">
+                <Sparkles className="relative z-10 h-6 w-6" />
+              </span>
               <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-steel-600">
                 {s.description}
@@ -176,37 +191,46 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <Section className="bg-steel-50">
-        <SectionTitle
-          eyebrow="Flow"
-          title="施工の流れ"
-          description="お問い合わせから引き渡しまで、5つのステップで丁寧に対応いたします。"
-        />
-        <div className="mx-auto mt-12 max-w-4xl">
-          <ol className="space-y-4">
-            {flow.map((f) => (
-              <li
-                key={f.step}
-                className="flex gap-5 rounded-sm border border-steel-200 bg-white p-6 sm:p-7"
-              >
-                <span className="font-display text-3xl font-bold text-brand-600 sm:text-4xl">
-                  {f.step}
-                </span>
-                <div>
-                  <h3 className="text-lg font-bold text-steel-900">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-steel-600">
-                    {f.description}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
+      <Section className="relative overflow-hidden bg-steel-50">
+        <div className="pointer-events-none absolute inset-0 bg-grid-soft opacity-30" />
+        <div className="relative">
+          <SectionTitle
+            eyebrow="Flow"
+            title="施工の流れ"
+            description="お問い合わせから引き渡しまで、5つのステップで丁寧に対応いたします。"
+          />
+          <div className="mx-auto mt-12 max-w-4xl">
+            <ol className="space-y-4">
+              {flow.map((f) => (
+                <li key={f.step} className="card-modern flex gap-5 p-6 sm:p-7">
+                  <span
+                    className="font-display text-3xl font-bold sm:text-4xl"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #3B7DBE, #0F4C81)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {f.step}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold text-steel-900">
+                      {f.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-steel-600">
+                      {f.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </Section>
 
-      <section className="relative overflow-hidden bg-brand-700 py-20 text-white">
+      <section className="relative overflow-hidden py-20 text-white">
         <Image
           src="/images/works/duct-03.jpg"
           alt=""
@@ -215,6 +239,7 @@ export default function ServicesPage() {
           className="object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-800/85 to-brand-700/70" />
+        <div className="absolute inset-0 bg-grid-soft opacity-20" />
         <div className="container-x relative text-center">
           <h2 className="text-2xl font-bold sm:text-3xl">
             まずはお気軽にご相談ください。

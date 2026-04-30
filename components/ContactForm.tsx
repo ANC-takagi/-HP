@@ -85,7 +85,7 @@ function ContactFormInner() {
 
   if (send.status === "success") {
     return (
-      <div className="rounded-sm border border-brand-200 bg-brand-50 p-8 text-center">
+      <div className="card-modern p-8 text-center">
         <CheckCircle2 className="mx-auto h-12 w-12 text-brand-600" />
         <h3 className="mt-4 text-xl font-bold text-brand-700">
           お問い合わせありがとうございます。
@@ -112,7 +112,7 @@ function ContactFormInner() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="space-y-6 rounded-sm border border-steel-200 bg-white p-6 sm:p-8"
+      className="card-modern space-y-6 p-6 sm:p-8"
     >
       <Field
         label="お問い合わせ種別"
@@ -289,9 +289,9 @@ function Field({
 
 function inputBase(error: unknown) {
   return cn(
-    "w-full rounded-sm border bg-white px-4 py-2.5 text-sm text-steel-900 placeholder:text-steel-400 focus:outline-none focus:ring-2 focus:ring-brand-300",
+    "w-full rounded-xl border bg-white/80 px-4 py-2.5 text-sm text-steel-900 backdrop-blur-sm transition-all placeholder:text-steel-400 focus:outline-none focus:ring-4",
     error
-      ? "border-red-300 focus:border-red-400 focus:ring-red-200"
-      : "border-steel-300 focus:border-brand-500",
+      ? "border-red-300 focus:border-red-400 focus:ring-red-100"
+      : "border-steel-200 focus:border-brand-500 focus:ring-brand-100",
   );
 }

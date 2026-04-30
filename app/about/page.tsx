@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const profile: { label: string; value: string | React.ReactNode }[] = [
-  { label: "商号", value: company.name },
+  { label: "会社名", value: company.name },
   { label: "代表者", value: company.representative },
   { label: "所在地", value: company.address.full },
   {
@@ -53,54 +53,46 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="会社案内"
-        description={`${company.name}は、令和元年に千葉県市原市で創業した熱絶縁工事(保温板金)会社です。`}
+        description={
+          <>
+            {company.name}は、令和元年に千葉県市原市で創業した
+            <br className="sm:hidden" />
+            熱絶縁工事(保温板金)会社です。
+          </>
+        }
       />
 
       <Section className="bg-white">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-steel-100">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-steel-100 shadow-[0_30px_80px_-30px_rgba(15,76,129,0.4)]">
             <Image
-              src="/images/works/pipe-01.jpg"
-              alt="代表が手がける配管保温板金の現場"
+              src="/images/hero.jpg"
+              alt="屋外の大型配管 保温板金施工"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
               className="object-cover"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-steel-900/80 to-transparent p-6">
-              <p className="text-xs uppercase tracking-widest text-brand-200">
-                Representative
-              </p>
-              <p className="mt-1 text-lg font-bold text-white">
-                代表取締役 {company.representative}
-              </p>
-            </div>
+            <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
           </div>
           <div>
-            <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-brand-600">
-              Message
-            </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">
-              みんなのライフラインを、
-              <br />
-              静かに、確かに支える。
-            </h2>
-            <span className="mt-5 block h-1 w-12 rounded-full bg-brand-600" />
-            <div className="prose prose-steel mt-7 max-w-none space-y-5 text-base leading-relaxed text-steel-700">
+            <p className="eyebrow text-brand-600">Message</p>
+            <div className="w-fit">
+              <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+                みんなのライフラインを、
+                <br />
+                静かに、確かに支える。
+              </h2>
+              <span className="mt-5 block h-1 w-full rounded-full bg-gradient-to-r from-brand-500 to-brand-700" />
+            </div>
+            <div className="prose prose-steel mt-7 max-w-none space-y-5 text-pretty text-base leading-relaxed text-steel-700">
               <p>
-                工場やプラント、ビルの空調設備など、私たちの暮らしを支える「ライフライン」は、
-                目に見えない多くの設備によって成り立っています。その設備の熱を逃さず、
-                結露や凍結から守る——それが私たち保温板金職人の仕事です。
+                工場やプラント、ビルの空調設備など、私たちの暮らしを支える「ライフライン」は、目に見えない多くの設備によって成り立っています。その設備の熱を逃さず、結露や凍結から守る——それが私たち保温板金職人の仕事です。
               </p>
               <p>
-                {company.name}は、令和元年に千葉県市原市で創業しました。
-                若いチームで、勢いと柔軟さを武器に、現場ごとに最適な施工をご提供しています。
-                小さな配管から大型のプラント設備まで、一つひとつの仕事に丁寧に向き合うことで、
-                お客様の信頼を積み重ねてきました。
+                {company.name}は、令和元年に千葉県市原市で創業しました。若いチームで、勢いと柔軟さを武器に、現場ごとに最適な施工をご提供しています。小さな配管から大型のプラント設備まで、一つひとつの仕事に丁寧に向き合うことで、お客様の信頼を積み重ねてきました。
               </p>
               <p>
-                これから入社する仲間にも、お取引先様にも、
-                「この会社と一緒にやってよかった」と思っていただけるような会社であり続けたい。
-                そのために、技術と人を磨き、未来のライフラインを支え続けてまいります。
+                これから入社する仲間にも、お取引先様にも、「この会社と一緒にやってよかった」と思っていただけるような会社であり続けたい。そのために、技術と人を磨き、未来のライフラインを支え続けてまいります。
               </p>
               <p className="pt-2 text-right">
                 代表取締役{" "}
@@ -113,68 +105,70 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="bg-steel-50">
-        <SectionTitle eyebrow="Profile" title="会社概要" align="center" />
-        <div className="mx-auto mt-12 max-w-3xl overflow-hidden rounded-sm border border-steel-200 bg-white">
-          <table className="w-full text-left text-sm">
-            <tbody>
-              {profile.map((row, idx) => (
-                <tr
-                  key={row.label}
-                  className={
-                    idx !== profile.length - 1 ? "border-b border-steel-100" : ""
-                  }
-                >
-                  <th className="w-32 bg-steel-50 px-5 py-4 text-xs font-semibold uppercase tracking-wider text-steel-600 sm:w-40 sm:text-sm">
-                    {row.label}
-                  </th>
-                  <td className="px-5 py-4 text-steel-800">{row.value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="mx-auto mt-10 max-w-3xl">
-          <div className="overflow-hidden rounded-sm border border-steel-200 bg-white">
-            <iframe
-              title="所在地マップ"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(company.address.full)}&output=embed`}
-              width="100%"
-              height="320"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+      <Section className="relative overflow-hidden bg-steel-50">
+        <div className="pointer-events-none absolute -left-32 top-1/4 h-72 w-72 rounded-full bg-brand-100/50 blur-3xl" />
+        <div className="pointer-events-none absolute right-0 bottom-0 h-72 w-72 rounded-full bg-brand-200/30 blur-3xl" />
+        <div className="relative">
+          <SectionTitle eyebrow="Profile" title="会社概要" align="center" />
+          <div className="mx-auto mt-12 max-w-3xl">
+            <div className="card-modern overflow-hidden p-0 !border-2 !border-brand-600">
+              <ul className="divide-y divide-brand-600/15">
+                {profile.map((row) => (
+                  <li
+                    key={row.label}
+                    className="grid grid-cols-[6.5rem_1fr] items-center gap-4 px-5 py-5 transition-colors hover:bg-brand-50/40 sm:grid-cols-[10rem_1fr] sm:px-7"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="h-3 w-1 rounded-full bg-gradient-to-b from-brand-400 to-brand-700" />
+                      <span className="text-xs font-semibold uppercase tracking-wider text-steel-600 sm:text-sm">
+                        {row.label}
+                      </span>
+                    </div>
+                    <div className="text-sm text-steel-800 sm:text-base">
+                      {row.value}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </Section>
 
       <Section className="bg-white">
-        <div className="rounded-sm bg-brand-700 p-8 text-center text-white sm:p-12">
-          <h2 className="text-2xl font-bold sm:text-3xl">
-            お問い合わせ・ご相談はこちら
-          </h2>
-          <p className="mt-3 text-brand-100">
-            工事のお見積り、採用に関するご質問など、お気軽にどうぞ。
-          </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <a
-              href={`tel:${company.contact.telDigits}`}
-              className="inline-flex items-center gap-2 rounded-sm bg-white px-6 py-3 text-sm font-bold text-brand-700 hover:bg-brand-50"
-            >
-              <Phone className="h-4 w-4" />
-              {company.contact.tel}
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-sm border border-white/40 px-6 py-3 text-sm font-bold text-white hover:bg-white hover:text-brand-700"
-            >
-              <Mail className="h-4 w-4" />
-              お問い合わせフォーム
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+        <div
+          className="relative overflow-hidden rounded-3xl p-8 text-center text-white sm:p-12"
+          style={{
+            background:
+              "linear-gradient(135deg, #1B5DA0 0%, #0F4C81 50%, #082C4B 100%)",
+          }}
+        >
+          <div className="pointer-events-none absolute inset-0 bg-grid-soft opacity-20" />
+          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-300/20 blur-3xl" />
+          <div className="pointer-events-none absolute -left-20 -bottom-20 h-72 w-72 rounded-full bg-brand-400/20 blur-3xl" />
+          <div className="relative">
+            <h2 className="text-2xl font-bold sm:text-3xl">
+              お問い合わせ・ご相談はこちら
+            </h2>
+            <p className="mt-3 text-pretty text-brand-100">
+              工事のお見積り、採用に関するご質問など、
+              <br className="sm:hidden" />
+              お気軽にどうぞ。
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <a
+                href={`tel:${company.contact.telDigits}`}
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-brand-700 shadow-lg shadow-black/10 transition-all hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                <Phone className="h-4 w-4" />
+                {company.contact.tel}
+              </a>
+              <Link href="/contact" className="btn-light">
+                <Mail className="h-4 w-4" />
+                お問い合わせフォーム
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </Section>
