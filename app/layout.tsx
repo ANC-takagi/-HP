@@ -19,7 +19,7 @@ const notoSansJp = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
 });
 
-const SITE_URL = "https://kikuchi-kogyo.example.com";
+const SITE_URL = "https://kikutikougyouhp.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,21 +49,12 @@ export const metadata: Metadata = {
     title: `${company.name} | 熱絶縁工事・保温板金`,
     description:
       "千葉県市原市の熱絶縁工事(保温板金)。工場・プラント・空調ダクト・配管・ボイラー・タンクなど幅広く対応。",
-    images: [
-      {
-        url: "/images/hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: company.name,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${company.name} | 熱絶縁工事・保温板金`,
     description:
       "千葉県市原市の熱絶縁工事(保温板金)。プラント・工場・配管・ダクトなどに対応。",
-    images: ["/images/hero.jpg"],
   },
   robots: {
     index: true,
