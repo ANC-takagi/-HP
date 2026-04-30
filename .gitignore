@@ -56,3 +56,9 @@ coverage/
 Screenshot*.png
 *-reference.png
 .local/
+
+# --- 元のオリジナル画像 (リネーム済みのpublic/images配下を使用) ---
+/IMG_*.JPG
+/IMG_*.jpg
+/IMG_*.PNG
+/IMG_*.png

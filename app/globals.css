@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-steel-800 antialiased;
+    font-feature-settings: "palt";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight text-steel-900;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-10;
+  }
+
+  .heading-section {
+    @apply font-display text-4xl font-bold uppercase tracking-tight text-brand-700 sm:text-5xl;
+  }
+
+  .heading-jp {
+    @apply mt-2 text-base font-semibold text-steel-600 sm:text-lg;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn border-brand-600 bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500;
+  }
+
+  .btn-outline {
+    @apply btn border-brand-600 bg-transparent text-brand-600 hover:bg-brand-600 hover:text-white focus:ring-brand-500;
+  }
+
+  .btn-light {
+    @apply btn border-white/40 bg-white/10 text-white backdrop-blur hover:bg-white hover:text-brand-700 focus:ring-white;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700;
+  }
+
+  .accent-bar {
+    @apply mx-auto h-1 w-12 rounded-full bg-brand-600;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .clip-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+}
