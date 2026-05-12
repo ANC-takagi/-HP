@@ -118,7 +118,7 @@ export default function RecruitPage() {
               {[
                 "若いチームで、相談しやすい雰囲気",
                 "プラント・工場・配管・機器と幅広い案件で技術が身につく",
-                "正社員のほか、下請け・個人事業主としての協力も歓迎",
+                "正社員のほか、協力会社・個人事業主としての協力も歓迎",
                 "がんばりは家族手当・交通費等の制度でしっかり還元",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3 text-steel-800">
@@ -223,7 +223,7 @@ export default function RecruitPage() {
             {
               icon: HeartHandshake,
               title: "多様な働き方",
-              description: "正社員・下請け業者・個人事業主、いずれの形態も歓迎します。",
+              description: "正社員・協力会社・個人事業主、いずれの形態も歓迎します。",
             },
           ].map((m) => {
             const Icon = m.icon;

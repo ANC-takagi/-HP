@@ -13,8 +13,8 @@ export const company = {
   business: "熱絶縁工事(保温板金)",
   catchphrase: "みんなのライフラインを支える。",
   contact: {
-    tel: "080-6849-5431",
-    telDigits: "08068495431",
+    tel: "0436-55-5966",
+    telDigits: "0436555966",
     email: "kikuchikogyo37@gmail.com",
   },
   serviceAreas: [
@@ -49,7 +49,7 @@ export const company = {
   ],
   recruit: {
     job: "保温板金",
-    employmentTypes: ["正社員", "下請け業者様", "個人事業主"],
+    employmentTypes: ["正社員", "協力会社様", "個人事業主"],
     salary: "13,000円〜",
     salaryNote: "雇用形態・経験年数・年齢により異なります",
     workLocation: "主に千葉県市原市",
