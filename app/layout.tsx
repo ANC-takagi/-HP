@@ -19,7 +19,7 @@ const notoSansJp = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
 });
 
-const SITE_URL = "https://kikuchikougyouhp.vercel.app";
+const SITE_URL = "https://kikuchi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
